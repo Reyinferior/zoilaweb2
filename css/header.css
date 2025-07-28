@@ -1,0 +1,43 @@
+.cabezera {
+    display: flex;
+    align-items: center;            /* Centra verticalmente */
+    justify-content: space-between; /* H1 a la izquierda, nav a la derecha */
+    background-color: #e70202;
+    color: white;
+    padding: 10px 20px;
+}
+
+.logo {
+    
+    width: 50px;                  /* Ancho del logo */
+    height: 50px;                 /* Alto del logo */
+    background-image: url('../img/logo.png'); /* Ruta de la imagen del logo */
+    background-size: cover;        /* Ajusta la imagen al contenedor */
+    background-position: center;   /* Centra la imagen */
+
+
+
+}
+
+.cabezera nav ul {
+    display: flex;      /* Hace los <li> en fila */
+    list-style: none;   /* Quita bullets */
+    margin: 0;
+    padding: 0;
+}
+
+.cabezera nav ul li + li {
+  margin-left: 20px;  /* Espacio entre enlaces */
+}
+
+.cabezera h1 {
+    margin: 0 0 0 100px;             /* Evita márgenes extra */
+    font-size: 1.5em;
+    color: white;
+}
+
+.cabezera nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
