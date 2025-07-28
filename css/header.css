@@ -1,43 +1,59 @@
+/* 1) Header como flex-container */
 .cabezera {
     display: flex;
-    align-items: center;            /* Centra verticalmente */
-    justify-content: space-between; /* H1 a la izquierda, nav a la derecha */
-    background-color: #e70202;
-    color: white;
+    align-items: center;
+  /* quita justify-content: space-between; */
     padding: 10px 20px;
+    background: #e70202;
+    
 }
 
-.logo {
-    
-    width: 50px;                  /* Ancho del logo */
-    height: 50px;                 /* Alto del logo */
-    background-image: url('../img/logo.png'); /* Ruta de la imagen del logo */
-    background-size: cover;        /* Ajusta la imagen al contenedor */
-    background-position: center;   /* Centra la imagen */
+/* 2) Logo con tamaño fijo y sin crecer */
+.cabezera .logo {
+    flex: 0 0 auto;    /* no crece ni encoge */
+    width: 250px;        /* pon el ancho que te convenga */
+    height: auto;
+    margin-right: 20px; /* separación mínima al título */
+}
 
+/* 3) Título que ocupa todo el espacio libre */
+.cabezera h1 {
+    flex: 1 1 auto;    /* sí crece para rellenar el espacio */
 
+    margin: 0;         /* elimina posibles márgenes por defecto */
+    text-align: center;
+    color: white;
 
+}
+
+/* 4) Nav al final */
+.cabezera nav {
+  flex: 0 0 auto;    /* no crece ni encoge */
+  margin-left: auto; /* ¡esto lo empuja a la derecha! */
 }
 
 .cabezera nav ul {
-    display: flex;      /* Hace los <li> en fila */
-    list-style: none;   /* Quita bullets */
+    display: flex;
+    list-style: none;
     margin: 0;
     padding: 0;
 }
-
 .cabezera nav ul li + li {
-  margin-left: 20px;  /* Espacio entre enlaces */
+    margin-left: 20px;
 }
-
-.cabezera h1 {
-    margin: 0 0 0 100px;             /* Evita márgenes extra */
-    font-size: 1.5em;
-    color: white;
-}
-
 .cabezera nav a {
     color: white;
     text-decoration: none;
     font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .cabezera {
+    flex-direction: column;
+    text-align: center;
+    height: auto;
+    }
+    .cabezera nav {
+    margin: 10px 0 0;
+    }
 }
