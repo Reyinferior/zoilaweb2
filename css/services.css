@@ -1,0 +1,121 @@
+:root {
+  --neon-color: #39FF14; /* verde neón */
+}
+
+/* 1) Grid para las cajas */
+.services-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    padding: 40px 20px;
+}
+
+/* 2) Borde neón base */
+.service-box {
+    position: relative;
+    background: #0a0909; /* fondo oscuro para contraste */
+    padding: 20px;
+    border: 2px solid var(--neon-color);
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* 3) Sombra de neón pulsante */
+@keyframes neonBorder {
+    from {
+    box-shadow:
+        0 0 6px var(--neon-color),
+        0 0 12px var(--neon-color),
+        0 0 18px var(--neon-color);
+    }
+    to {
+    box-shadow:
+        0 0 12px var(--neon-color),
+        0 0 24px var(--neon-color),
+        0 0 36px var(--neon-color);
+    }
+}
+
+/* 4) Hover: pulso y ligero “pop” */
+.service-box:hover {
+    animation: neonBorder 1.5s ease-in-out infinite alternate;
+    transform: translateY(-5px);
+}
+
+/* 5) Tipografía interna */
+.service-box h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #fff;
+    font-size: 1.25rem;
+}
+.service-box p {
+    margin: 0;
+    color: #ccc;
+    line-height: 1.4;
+}
+
+/* 6) Responsivo: adapta padding y gap */
+@media (max-width: 600px) {
+    .services-container {
+    padding: 20px 10px;
+    gap: 15px;
+    }
+    .service-box {
+    padding: 16px;
+    }
+}
+
+/* Keyframes de fade+slide */
+@keyframes fadeInUp {
+    from {
+    opacity: 0;
+    transform: translateY(20px);
+    }
+    to {
+    opacity: 1;
+    transform: translateY(0);
+    }
+}
+
+/* 2) Cajas ocultas inicialmente */
+.service-box {
+    opacity: 0;
+    transform: translateY(20px);
+  transition: none;  /* no transiciones en reposo */
+}
+
+/* 3) Clase que lanza la animación */
+.service-box.visible {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+
+/* Retrasos en cascada */
+.service-box:nth-child(1).animate { animation-delay: 0.1s; }
+.service-box:nth-child(2).animate { animation-delay: 0.4s; }
+.service-box:nth-child(3).animate { animation-delay: 0.7s; }
+.service-box:nth-child(4).animate { animation-delay: 1s; }
+/* Ajusta según número de cajas */
+
+
+:root {
+    --neon-color: #f0f0f0;
+}
+
+/* 1) Transición suave para transform y sombra */
+.service-box {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 2) Al pasar el ratón: elevación y glow neón */
+.service-box:hover {
+    transform: translateY(-5px);
+    box-shadow:
+    0 0 6px var(--neon-color),
+    0 0 12px var(--neon-color),
+    0 0 18px var(--neon-color),
+    0 0 24px var(--neon-color);
+}
+
+

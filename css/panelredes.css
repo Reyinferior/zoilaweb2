@@ -1,0 +1,35 @@
+/* css/estilo.css (o banner.css si lo prefieres) */
+
+/* Contenedor fijo en el lateral */
+.social-bar {
+    position: fixed;
+    right: 10px;               /* a 10px del borde derecho */
+    top: 50%;                  /* inicia en mitad de pantalla */
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;    /* apila verticalmente */
+    gap: 12px;                 /* espacio entre iconos */
+    z-index: 1000;             /* siempre encima de todo */
+    }
+
+    /* Estilo de cada icono */
+    .social-bar a img {
+    display: block;
+    width: 36px;               /* ajusta tamaño */
+    height: 36px;
+    transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    /* Hover: efecto “neón” suave */
+    .social-bar a:hover img {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.7))
+            drop-shadow(0 0 12px rgba(255, 255, 255, 0.5));
+    }
+
+    /* Responsivo: oculta en móviles muy estrechos */
+    @media (max-width: 480px) {
+    .social-bar {
+        display: none;
+    }
+    }

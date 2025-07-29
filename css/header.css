@@ -4,7 +4,8 @@
     align-items: center;
   /* quita justify-content: space-between; */
     padding: 10px 20px;
-    background: #e70202;
+    background: #0a0909;
+    
     
 }
 
@@ -16,10 +17,11 @@
     margin-right: 20px; /* separación mínima al título */
 }
 
+
 /* 3) Título que ocupa todo el espacio libre */
 .cabezera h1 {
     flex: 1 1 auto;    /* sí crece para rellenar el espacio */
-
+    font-size: 1.2em;    /* tamaño de fuente grande */
     margin: 0;         /* elimina posibles márgenes por defecto */
     text-align: center;
     color: white;
@@ -37,14 +39,23 @@
     list-style: none;
     margin: 0;
     padding: 0;
+    
 }
 .cabezera nav ul li + li {
     margin-left: 20px;
+    
 }
+
+.cabezera nav ul li a {
+  font-size: 0.8rem;        /* antes quizá era 1.2rem o más; prueba 1rem o 0.9rem */
+  padding: 6px 12px;      /* reduce el padding para que el nav no quede tan alto */
+}
+
 .cabezera nav a {
     color: white;
     text-decoration: none;
     font-weight: bold;
+
 }
 
 @media (max-width: 600px) {
@@ -56,4 +67,89 @@
     .cabezera nav {
     margin: 10px 0 0;
     }
+}
+
+
+/* ==== Efecto Shine Animado ==== */
+
+/* 1) Preparar el contenedor del logo */
+.logo.shine {
+    position: relative;
+    overflow: hidden;
+}
+
+/* 2) Crear la franja de brillo */
+.logo.shine::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;                 /* parte fuera a la izquierda */
+    width: 50%;                  /* ancho de la “banda” de brillo */
+    height: 100%;
+    background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.8) 50%,
+    rgba(255,255,255,0) 100%
+    );
+  transform: skewX(-25deg);    /* ángulo del brillo */
+  animation: shine 2s infinite; /* duración y repetición */
+}
+
+/* 3) Definir la animación */
+@keyframes shine {
+    0%   { left: -100%; }
+    50%  { left: 100%; }  /* atraviesa todo el logo */
+    100% { left: 100%; }
+}
+
+
+
+
+:root {
+  --neon-color: #edf1ed; /* verde neón, cámbialo si prefieres otro tono */
+}
+
+/* Base del enlace */
+.cabezera nav ul li a {
+    position: relative;           /* para el glow */
+    transition: color 0.2s ease;
+}
+
+/* Hover: color y texto con sombra para el glow */
+.cabezera nav ul li a:hover {
+    color: var(--neon-color);
+    animation: neonGlow 1.5s ease-in-out infinite alternate;
+}
+
+/* Definimos la animación que pulsa el glow */
+@keyframes neonGlow {
+    from {
+    text-shadow:
+        0 0 4px var(--neon-color),
+        0 0 8px var(--neon-color),
+        0 0 12px var(--neon-color),
+        0 0 16px var(--neon-color);
+    }
+    to {
+    text-shadow:
+        0 0 8px var(--neon-color),
+        0 0 16px var(--neon-color),
+        0 0 24px var(--neon-color),
+        0 0 32px var(--neon-color);
+    }
+}
+
+/* Si quieres un subrayado neon animado también: */
+.cabezera nav ul li a::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: -4px;
+    width: 0;
+    height: 3px;
+    background: var(--neon-color);
+    transition: width 0.2s ease;
+}
+.cabezera nav ul li a:hover::after {
+    width: 100%;
 }

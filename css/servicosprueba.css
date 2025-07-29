@@ -1,0 +1,92 @@
+/* services.css */
+
+/* Color neón principal */
+:root {
+  --neon-color: #ffffff;
+}
+
+/* 1) Título de la sección */
+.section-title {
+  text-align: center;
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  color: #fff;
+  margin: 40px 0 20px;
+}
+
+/* 2) Contenedor flex para las cajas */
+.services-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  padding: 0 20px 40px;
+}
+
+/* 3) Estilo base de cada caja */
+.service-box {
+  position: relative;
+  background: #0a0909;
+  padding: 20px;
+  border: 2px solid var(--neon-color);
+  border-radius: 8px;
+  flex: 1 1 calc(25% - 20px);
+  min-width: 220px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform-origin: center center;
+}
+
+/* 4) Animación de entrada (fade + slide up) */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 5) Clase aplicada al entrar en viewport */
+.service-box.visible {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* 6) Retrasos escalonados */
+.service-box:nth-child(1).visible { animation-delay: 0.1s; }
+.service-box:nth-child(2).visible { animation-delay: 0.3s; }
+.service-box:nth-child(3).visible { animation-delay: 0.5s; }
+.service-box:nth-child(4).visible { animation-delay: 0.7s; }
+
+/* 7) Hover: pop + glow neón */
+.service-box:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow:
+    0 0 6px var(--neon-color),
+    0 0 12px var(--neon-color),
+    0 0 18px var(--neon-color),
+    0 0 24px var(--neon-color);
+}
+
+/* 8) Tipografía interna */
+.service-box h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #ffffff;
+  font-size: 1.25rem;
+}
+.service-box p {
+  margin: 0;
+  color: #ffffff;
+  line-height: 1.4;
+}
+
+/* 9) Responsive: empilar en pantallas < 768px */
+@media (max-width: 768px) {
+  .service-box {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
